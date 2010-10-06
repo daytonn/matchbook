@@ -195,6 +195,8 @@ Which will render something like this:
 	&lt;/html&gt;
 </pre>
 
+## API
+
 Matchbook provides a full API to dynamically add and edit the head content from your controller:
 
 ### add_stylesheet((string) $stylesheet)
@@ -208,3 +210,5 @@ The add_stylesheet method adds a stylesheet to be included in the head markup. N
 	$this->matchbook->add_script('jquery-1.4.2.min'); // adds jquery-1.4.2.min.js to the list of head_scripts to be included in the head markup
 </pre>
 The add_script method adds a script to be included in either the head or the footer markup. The second (optional) argument is the location where the script will be included, one of either head or footer. Note: The default location is header and the js extension is excluded.
+
+coming soon...
