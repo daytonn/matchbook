@@ -201,13 +201,13 @@ Matchbook provides a full API to dynamically add and edit the head content from 
 
 ### add_stylesheet((string) $stylesheet)
 <pre name="code" class="php">
-	$this->matchbook->add_stylesheet('styles'); // adds styles.css to the list of stylesheets to be included in the head markup
+	$this->matchbook->add_stylesheet('styles'); // adds styles.css to stylesheets to be included in the head markup
 </pre>
 The add_stylesheet method adds a stylesheet to be included in the head markup. Note: the css extension is excluded.
 
 ### add_script((string) $script, (string) $location = 'head')
 <pre name="code" class="php">
-	$this->matchbook->add_script('jquery-1.4.2.min'); // adds jquery-1.4.2.min.js to the list of head_scripts to be included in the head markup
+	$this->matchbook->add_script('jquery-1.4.2.min'); // adds jquery-1.4.2.min.js to head_scripts to be included in the head markup
 </pre>
 The add_script method adds a script to be included in either the head or the footer markup. The second (optional) argument is the location where the script will be included, one of either head or footer. Note: The default location is header and the js extension is excluded.
 
