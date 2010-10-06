@@ -6,16 +6,16 @@
 ## Configuration
 Basic configuration
 <pre name="code" class="php">
-	$config['doctype'] = 'HTML5';
-	$config['title'] = 'Matchbook - Asset Management Library for Codeigniter';
-	$config['icon_path'] = 'images/icons/';
-	$config['stylesheet_path'] = 'css/';
-	$config['javascript_path'] = 'js/';
-	$config['stylesheets'] = array('main');
-	$config['head_scripts'] = array('headscript');
-	$config['body_scripts'] = array('bodycript');
-	$config['author'] = 'Dayton Nolan';
-	$config['description'] = 'Yet another asset management library for Codeigniter';
+$config['doctype'] = 'HTML5';
+$config['title'] = 'Matchbook - Asset Management Library for Codeigniter';
+$config['icon_path'] = 'images/icons/';
+$config['stylesheet_path'] = 'css/';
+$config['javascript_path'] = 'js/';
+$config['stylesheets'] = array('main');
+$config['head_scripts'] = array('headscript');
+$config['body_scripts'] = array('bodycript');
+$config['author'] = 'Dayton Nolan';
+$config['description'] = 'Yet another asset management library for Codeigniter';
 </pre>
 
 <table border="0" cellspacing="0" cellpadding="0">
@@ -120,79 +120,79 @@ Basic configuration
 Either autoload or load the matchbook library (make sure to setup your config/matchbook.php)
 
 <pre name="code" class="php">
-	// config/autoload.php
-	$autoload['libraries'] = array('matchbook');
-	
-	//-- OR --//
-	
-	// controllers/controller.php
-	$this->load->library('matchbook');
+// config/autoload.php
+$autoload['libraries'] = array('matchbook');
+
+//-- OR --//
+
+// controllers/controller.php
+$this->load->library('matchbook');
 </pre>
 
 You can now control head content via the matchbook API
 
 <pre name="code" class="php">
-	// controllers/controller.php
-	$this->matchbook->page_info(array('title' = 'My Page Title', 'id' => 'home'));
-	$data['head'] = $this->matchbook->head(); // Get the head markup
-	$data['footer'] = $this->matchbook->footer(); // Get the closing footer markup
-	$this->load->view('myview', $data); // Pass markup to view
-	
-	// Then in views/myview.php
-	&lt;?php echo $head; ?&gt;
-		&lt;!-- Content goes here --&gt;
-	&lt;?php echo $footer ?&gt;
-	
-	//-- OR --//
-	
-	// You can use the matchbook helper to print the markup directly in a view
-	// In views/myview.php
-	&lt;?php echo head(); ?&gt;
-		&lt;!-- Content goes here --&gt;
-	&lt;?php echo footer(); ?&gt;
+// controllers/controller.php
+$this->matchbook->page_info(array('title' = 'My Page Title', 'id' => 'home'));
+$data['head'] = $this->matchbook->head(); // Get the head markup
+$data['footer'] = $this->matchbook->footer(); // Get the closing footer markup
+$this->load->view('myview', $data); // Pass markup to view
+
+// Then in views/myview.php
+&lt;?php echo $head; ?&gt;
+	&lt;!-- Content goes here --&gt;
+&lt;?php echo $footer ?&gt;
+
+//-- OR --//
+
+// You can use the matchbook helper to print the markup directly in a view
+// In views/myview.php
+&lt;?php echo head(); ?&gt;
+	&lt;!-- Content goes here --&gt;
+&lt;?php echo footer(); ?&gt;
 </pre>
 
 Which will render something like this:
 
 <pre name="code" class="php">
-	&lt;!DOCTYPE html&gt;
-	&lt;!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --&gt; 
-	&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js ie6"&gt; &lt;![endif]--&gt;
-	&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js ie7"&gt; &lt;![endif]--&gt;
-	&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js ie8"&gt; &lt;![endif]--&gt;
-	&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js ie9"&gt; &lt;![endif]--&gt;
-	&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;
-	&lt;head&gt;
-		&lt;script&gt;document.documentElement.className = 'js';&lt;/script&gt;
-		&lt;meta charset="utf-8"&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --&gt; 
+&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js ie6"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js ie9"&gt; &lt;![endif]--&gt;
+&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;
+&lt;head&gt;
+	&lt;script&gt;document.documentElement.className = 'js';&lt;/script&gt;
+	&lt;meta charset="utf-8"&gt;
 
-		&lt;!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
-			 Remove this if you use the .htaccess --&gt;
+	&lt;!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+		 Remove this if you use the .htaccess --&gt;
 
-		&lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
+	&lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
 
-		&lt;title&gt;Matchbook - Asset Management Library for Codeigniter&lt;/title&gt;
-	  	&lt;meta name="description" content="Yet another asset manager for Codeigniter"&gt;
-	  	&lt;meta name="author" content="Dayton Nolan"&gt;
+	&lt;title&gt;Matchbook - Asset Management Library for Codeigniter&lt;/title&gt;
+  	&lt;meta name="description" content="Yet another asset manager for Codeigniter"&gt;
+  	&lt;meta name="author" content="Dayton Nolan"&gt;
 
-	  	&lt;!--  Mobile viewport optimized: j.mp/bplateviewport --&gt;
-	  	&lt;meta name="viewport" content="width=device-width; initial-scale=1.0"&gt;
+  	&lt;!--  Mobile viewport optimized: j.mp/bplateviewport --&gt;
+  	&lt;meta name="viewport" content="width=device-width; initial-scale=1.0"&gt;
 
-	  	&lt;!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references --&gt;
+  	&lt;!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references --&gt;
 
-	  	&lt;link rel="shortcut icon" href="http://example.com/favicon.ico"&gt;
-	  	&lt;link rel="apple-touch-icon" href="http://example.com/images/icons/ios-icon.png"&gt;
+  	&lt;link rel="shortcut icon" href="http://example.com/favicon.ico"&gt;
+  	&lt;link rel="apple-touch-icon" href="http://example.com/images/icons/ios-icon.png"&gt;
 
-		&lt;link rel="stylesheet" href="http://example.com/css/main.css?1286342222" type="text/css" charset="utf-8" /&gt;
+	&lt;link rel="stylesheet" href="http://example.com/css/main.css?1286342222" type="text/css" charset="utf-8" /&gt;
 
-		&lt;script src="http://example.com//js/headscript.js?1286342222"&gt;&lt;/script&gt;
+	&lt;script src="http://example.com//js/headscript.js?1286342222"&gt;&lt;/script&gt;
 
-	&lt;/head&gt;
-	&lt;body id="home"&gt;
-		&lt;!-- Content goes here --&gt;
-	&lt;script src="http://example.com/js/application/bodyscript.js?1286342222"&gt;&lt;/script&gt;
-	&lt;/body&gt;
-	&lt;/html&gt;
+&lt;/head&gt;
+&lt;body id="home"&gt;
+	&lt;!-- Content goes here --&gt;
+&lt;script src="http://example.com/js/application/bodyscript.js?1286342222"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </pre>
 
 ## API
@@ -201,13 +201,13 @@ Matchbook provides a full API to dynamically add and edit the head content from 
 
 ### add_stylesheet((string) $stylesheet)
 <pre name="code" class="php">
-	$this->matchbook->add_stylesheet('styles'); // adds styles.css to stylesheets to be included in the head markup
+$this->matchbook->add_stylesheet('styles'); // adds styles.css to stylesheets to be included in the head markup
 </pre>
 The add_stylesheet method adds a stylesheet to be included in the head markup. Note: the css extension is excluded.
 
 ### add_script((string) $script, (string) $location = 'head')
 <pre name="code" class="php">
-	$this->matchbook->add_script('jquery-1.4.2.min'); // adds jquery-1.4.2.min.js to head_scripts to be included in the head markup
+$this->matchbook->add_script('jquery-1.4.2.min'); // adds jquery-1.4.2.min.js to head_scripts to be included in the head markup
 </pre>
 The add_script method adds a script to be included in either the head or the footer markup. The second (optional) argument is the location where the script will be included, one of either head or footer. Note: The default location is header and the js extension is excluded.
 
