@@ -139,17 +139,17 @@ You can now control head content via the matchbook API
 	$this->load->view('myview', $data); // Pass markup to view
 	
 	// Then in views/myview.php
-	<?php echo $head; ?>
+	&lt;?php echo $head; ?&gt;
 		<!-- Content goes here -->
-	<?php echo $footer ?>
+	&lt;?php echo $footer ?&gt;
 	
 	//-- OR --//
 	
 	// You can use the matchbook helper to print the markup directly in a view
 	// In views/myview.php
-	<?php echo head(); ?>
+	&lt;?php echo head(); ?&gt;
 		<!-- Content goes here -->
-	<?php echo footer(); ?>
+	&lt;?php echo footer(); ?&gt;
 </pre>
 
 Which will render something like this:
