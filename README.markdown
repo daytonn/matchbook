@@ -140,7 +140,7 @@ You can now control head content via the matchbook API
 	
 	// Then in views/myview.php
 	&lt;?php echo $head; ?&gt;
-		<!-- Content goes here -->
+		&lt;!-- Content goes here --&gt;
 	&lt;?php echo $footer ?&gt;
 	
 	//-- OR --//
@@ -148,51 +148,51 @@ You can now control head content via the matchbook API
 	// You can use the matchbook helper to print the markup directly in a view
 	// In views/myview.php
 	&lt;?php echo head(); ?&gt;
-		<!-- Content goes here -->
+		&lt;!-- Content goes here --&gt;
 	&lt;?php echo footer(); ?&gt;
 </pre>
 
 Which will render something like this:
 
 <pre name="code" class="php">
-	<!DOCTYPE html>
-	<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
-	<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-	<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-	<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-	<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-	<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-	<head>
-		<script>document.documentElement.className = 'js';</script>
-		<meta charset="utf-8">
+	&lt;!DOCTYPE html&gt;
+	&lt;!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --&gt; 
+	&lt;!--[if lt IE 7 ]&gt; &lt;html lang="en" class="no-js ie6"&gt; &lt;![endif]--&gt;
+	&lt;!--[if IE 7 ]&gt;    &lt;html lang="en" class="no-js ie7"&gt; &lt;![endif]--&gt;
+	&lt;!--[if IE 8 ]&gt;    &lt;html lang="en" class="no-js ie8"&gt; &lt;![endif]--&gt;
+	&lt;!--[if IE 9 ]&gt;    &lt;html lang="en" class="no-js ie9"&gt; &lt;![endif]--&gt;
+	&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt; &lt;html lang="en" class="no-js"&gt; &lt;!--&lt;![endif]--&gt;
+	&lt;head&gt;
+		&lt;script&gt;document.documentElement.className = 'js';&lt;/script&gt;
+		&lt;meta charset="utf-8"&gt;
 
-		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
-			 Remove this if you use the .htaccess -->
+		&lt;!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+			 Remove this if you use the .htaccess --&gt;
 
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		&lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
 
-		<title>Matchbook - Asset Management Library for Codeigniter</title>
-	  	<meta name="description" content="Yet another asset manager for Codeigniter">
-	  	<meta name="author" content="Dayton Nolan">
+		&lt;title&gt;Matchbook - Asset Management Library for Codeigniter&lt;/title&gt;
+	  	&lt;meta name="description" content="Yet another asset manager for Codeigniter"&gt;
+	  	&lt;meta name="author" content="Dayton Nolan"&gt;
 
-	  	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
-	  	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+	  	&lt;!--  Mobile viewport optimized: j.mp/bplateviewport --&gt;
+	  	&lt;meta name="viewport" content="width=device-width; initial-scale=1.0"&gt;
 
-	  	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	  	&lt;!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references --&gt;
 
-	  	<link rel="shortcut icon" href="http://example.com/favicon.ico">
-	  	<link rel="apple-touch-icon" href="http://example.com/images/icons/ios-icon.png">
+	  	&lt;link rel="shortcut icon" href="http://example.com/favicon.ico"&gt;
+	  	&lt;link rel="apple-touch-icon" href="http://example.com/images/icons/ios-icon.png"&gt;
 
-		<link rel="stylesheet" href="http://example.com/css/main.css?1286342222" type="text/css" charset="utf-8" />
+		&lt;link rel="stylesheet" href="http://example.com/css/main.css?1286342222" type="text/css" charset="utf-8" /&gt;
 
-		<script src="http://example.com//js/headscript.js?1286342222"></script>
+		&lt;script src="http://example.com//js/headscript.js?1286342222"&gt;&lt;/script&gt;
 
-	</head>
-	<body id="home">
-		<!-- Content goes here -->
-	<script src="http://example.com/js/application/bodyscript.js?1286342222"></script>
-	</body>
-	</html>
+	&lt;/head&gt;
+	&lt;body id="home"&gt;
+		&lt;!-- Content goes here --&gt;
+	&lt;script src="http://example.com/js/application/bodyscript.js?1286342222"&gt;&lt;/script&gt;
+	&lt;/body&gt;
+	&lt;/html&gt;
 </pre>
 
 Matchbook provides a full API to dynamically add and edit the head content from your controller:
