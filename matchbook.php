@@ -16,10 +16,10 @@ class MatchBook
 {
 	private $doctype;
 	private $title = 'Untitled Document';
-	private $icon_path = 'images/icons/';
 	private $stylesheet_path = 'css/';
-	private $javascript_path = 'js/';
+	private $script_path = 'js/';
 	private $image_path = 'images/';
+	private $icon_path = 'images/icons/';
 	private $meta_viewport_content = 'width=device-width; initial-scale=1.0';
 	private $stylesheets = array();
 	private $javascripts = array();
@@ -185,7 +185,7 @@ HEAD;
 	public function script_link($script)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		return '<script src="' . site_root($this->javascript_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
+		return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
 	}
 	
 	public function img($image_path, $options = array())
