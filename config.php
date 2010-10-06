@@ -1,6 +1,6 @@
 <?php
 	$config['doctype'] = 'HTML5';
-	$config['title'] = "Default title";
+	$config['title'] = "Matchbook - Asset Management Library for Codeigniter";
 	$config['icon_path'] = "images/icons/";
 	$config['stylesheet_path'] = "css/";
 	$config['javascript_path'] = 'js/';

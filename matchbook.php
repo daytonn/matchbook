@@ -29,8 +29,8 @@ class MatchBook
 	private $cachebuster = FALSE;
 	private $description = '';
 	private $author = '';
-	private $body_id;
-	private $body_class;
+	private $body_id = '';
+	private $body_class = '';
 	private $snippets = array();
 	
 	private $header;
@@ -137,7 +137,7 @@ HEAD;
 	public function stylesheet_link($stylesheet)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		return '<link rel="stylesheet" href="' . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
+		return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
 	}
 	
 	private function build_cachebuster()
@@ -169,7 +169,7 @@ HEAD;
 		return implode($body_script_links);
 	}
 	
-	public function javascripts()
+	public function scripts()
 	{		
 		$scripts = array_merge($this->head_scripts, $this->body_scripts);
 		$script_links = array();
@@ -188,22 +188,22 @@ HEAD;
 		return '<script src="' . site_root($this->javascript_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
 	}
 	
-	public function render_image($image_path, $options = array())
+	public function img($image_path, $options = array())
 	{
 		if(!isset($options['alt']))
 		{
 			$options['alt'] = $image_path;
 		}
 		
-		return '<img src="' . $this->image_src($image) . '"' . $this->build_attributes($options) . '/>';
+		return '<img src="' . $this->image_src($image_path) . '"' . $this->build_attributes($options) . '/>';
 	}
 	
 	public function image_src($path)
 	{
-		return site_url($this->image_path . $path);
+		return $this->site_root($this->image_path . $path);
 	}
 	
-	private function build_attributes($attributes)
+	public function build_attributes($attributes)
 	{		
 		$attributes_string = '';
 		foreach($attributes as $attr => $val)
@@ -213,7 +213,7 @@ HEAD;
 		
 		return $attributes_string;
 	}
-	
+		
 	public function add_stylesheet($stylesheet)
 	{
 		$this->stylesheets[] = $stylesheet;
@@ -259,9 +259,24 @@ FOOTER;
 	
 	public function page_info($options)
 	{
-		$this->title = $options['title'] || $this->title;
-		$this->body_id = $options['id'] || '';
-		$this->body_class = $options['class'] || '';
+		$this->title = (isset($options['title'])) ? $options['title'] : $this->title;
+		$this->body_id = (isset($options['id'])) ? ' id="' . $options['id'] . '"' : '';
+		$this->body_class = (isset($options['class'])) ? ' class="' . $options['class'] . '"' : '';
+	}
+	
+	public function title($title)
+	{
+		$this->title = $title;
+	}
+	
+	public function body_id($id)
+	{
+		$this->body_id = ' id="' . $id . '"';
+	}
+	
+	public function body_class($class)
+	{
+		$this->body_class = ' class="' . $class .'"';
 	}
 }
 
