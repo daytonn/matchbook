@@ -6,9 +6,14 @@
 ## Usage
 
 * Either autoload or load the matchbook library
+
+<pre name="code" class="php">
 	$this->load->library('matchbook');
+</pre>
 
 * Set your configuration in config/matchbook.php
+
+<pre name="code" class="php">
 	$config['doctype'] = 'HTML5';
 	$config['title'] = "Matchbook - Asset Management Library for Codeigniter";
 	$config['icon_path'] = "images/icons/";
@@ -17,6 +22,7 @@
 	$config['stylesheets'] = array('main');
 	$config['head_scripts'] = array('headscript');
 	$config['body_scripts'] = array('pagescript');
+</pre>
 
 <table border="0" cellspacing="0" cellpadding="0">
 	<thead>
