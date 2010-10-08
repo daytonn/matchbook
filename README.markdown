@@ -1,5 +1,5 @@
 ## About
-Matchbook is a Codeigniter library that manages html script, stylesheet and image assets. It provides an API to the &lt;head&gt; content and includes helpers to work with script, stylesheet and image assets in your views.
+Matchbook is a Codeigniter library that manages script, stylesheet and image assets. It provides an API to the &lt;head&gt; content and includes helpers to work with script, stylesheet and image assets in your views.
 
 ## Installation
 * Copy libraries/matchbook.php into your Codeigniter application's "libraries" folder
