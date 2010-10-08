@@ -1,7 +1,7 @@
 ## Installation
-* Copy matchbook.php into your Codeigniter application's "libraries" folder
-* Copy matchbook_helper into your Codeigniter application's "helpers" folder (optional)
-* Copy and rename config.php to matchbook.php into your Codeigniter application's "config" folder (optional)
+* Copy libraries/matchbook.php into your Codeigniter application's "libraries" folder
+* Copy helpers/matchbook_helper.php into your Codeigniter application's "helpers" folder (optional)
+* Copy config/matchbook.php to matchbook.php into your Codeigniter application's "config" folder (optional)
 
 ## Configuration
 Basic configuration
@@ -196,23 +196,3 @@ Which will render something like this:
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-
-## API
-
-Matchbook provides a full API to dynamically add and edit the head content from your controller:
-
-### add_stylesheet((string) $stylesheet)
-<pre name="code" class="php">
-// adds styles.css to stylesheets to be included in the head markup
-$this->matchbook->add_stylesheet('styles');
-</pre>
-The add_stylesheet method adds a stylesheet to be included in the head markup. Note: the css extension is excluded.
-
-### add_script((string) $script, (string) $location = 'head')
-<pre name="code" class="php">
-// adds jquery-1.4.2.min.js to head_scripts to be included in the head markup
-$this->matchbook->add_script('jquery-1.4.2.min');
-</pre>
-The add_script method adds a script to be included in either the head or the footer markup. The second (optional) argument is the location where the script will be included, one of either head or footer. Note: The default location is header and the js extension is excluded.
-
-coming soon...
