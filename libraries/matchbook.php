@@ -188,14 +188,14 @@ HEAD;
 		return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
 	}
 	
-	public function img($image_path, $options = array())
+	public function img($image_path, $attributes = array())
 	{
-		if(!isset($options['alt']))
+		if(!isset($attributes['alt']))
 		{
-			$options['alt'] = $image_path;
+			$attributes['alt'] = $image_path;
 		}
 		
-		return '<img src="' . $this->image_src($image_path) . '"' . $this->build_attributes($options) . '/>';
+		return '<img src="' . $this->image_src($image_path) . '"' . $this->build_attributes($attributes) . '/>';
 	}
 	
 	public function image_src($path)
@@ -222,7 +222,7 @@ HEAD;
 	public function add_script($script, $location = 'head')
 	{
 		$script_location = $location . '_scripts';
-		$this->{$location}[] = $script;
+		$this->{$script_location}[] = $script;
 	}
 	
 	private function script_snippet($source)

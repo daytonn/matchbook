@@ -53,12 +53,6 @@ function footer()
 	return $CI->matchbook->footer();
 }
 
-function build_attributes($attributes)
-{
-	$CI =& get_instance();
-	return $CI->matchbook->build_attributes($attributes);
-}
-
 function img($image, $options = array())
 {
 	$CI =& get_instance();
