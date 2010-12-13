@@ -81,6 +81,13 @@ class MatchBook
   	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
   	<link rel="shortcut icon" href="{$this->site_root('favicon.ico')}">
   	<link rel="apple-touch-icon" href="{$this->site_root($this->icon_path)}ios-icon.png">
+	
+	<script type="text/javascript" charset="utf-8">
+		var base_url = '{$base_url}';
+		var site_url = function(path) {
+			return base_url + path;
+		};
+	</script>
 
 	{$this->stylesheets()}
 	{$this->head_scripts()}
