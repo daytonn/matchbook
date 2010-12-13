@@ -38,7 +38,7 @@ class MatchBook
 	public function __construct($config = FALSE)
 	{
 		$this->CI =& get_instance();
-		
+		$this->CI->load->helper('url');
 		if($config && is_array($config))
 		{
 			foreach($config as $setting => $value)
@@ -55,6 +55,7 @@ class MatchBook
 	
 	private function build_header()
 	{
+		$base_url = base_url();
 		$header = <<<HEAD
 {$this->doctype_delaration()}
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
