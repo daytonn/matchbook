@@ -145,7 +145,14 @@ HEAD;
 	public function stylesheet_link($stylesheet)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
+		if(preg_match('/^http|^\/\//', $stylesheet))
+		{
+		  return '<link rel="stylesheet" href="' . $stylesheet . '" type="text/css" charset="utf-8" />' . "\n";
+		}
+		else
+		{
+		  return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
+		}
 	}
 	
 	private function build_cachebuster()
@@ -193,7 +200,15 @@ HEAD;
 	public function script_link($script)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
+		
+		if(preg_match('/^http|^\/\//', $script))
+		{
+		  return '<script src="' . $script . '"></script>' . "\n";
+		}
+		else
+		{
+		  return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
+		}
 	}
 	
 	public function img($image_path, $attributes = array())
