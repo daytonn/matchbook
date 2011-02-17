@@ -1,0 +1,5 @@
+<script>
+/* <![CDATA[ */
+	<?= {$source} ?>
+/* ]]> */
+</script>
