@@ -38,7 +38,7 @@ class MatchBook
 	public function __construct($config = FALSE)
 	{
 		$this->CI =& get_instance();
-		
+		$this->CI->load->helper('url');
 		if($config && is_array($config))
 		{
 			foreach($config as $setting => $value)
@@ -55,6 +55,7 @@ class MatchBook
 	
 	private function build_header()
 	{
+		$base_url = base_url();
 		$header = <<<HEAD
 {$this->doctype_delaration()}
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
@@ -81,6 +82,13 @@ class MatchBook
   	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
   	<link rel="shortcut icon" href="{$this->site_root('favicon.ico')}">
   	<link rel="apple-touch-icon" href="{$this->site_root($this->icon_path)}ios-icon.png">
+	
+	<script type="text/javascript" charset="utf-8">
+		var base_url = '{$base_url}';
+		var site_url = function(path) {
+			return base_url + path;
+		};
+	</script>
 
 	{$this->stylesheets()}
 	{$this->head_scripts()}
@@ -137,7 +145,14 @@ HEAD;
 	public function stylesheet_link($stylesheet)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
+		if(preg_match('/^http|^\/\//', $stylesheet))
+		{
+		  return '<link rel="stylesheet" href="' . $stylesheet . '" type="text/css" charset="utf-8" />' . "\n";
+		}
+		else
+		{
+		  return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
+		}
 	}
 	
 	private function build_cachebuster()
@@ -185,7 +200,15 @@ HEAD;
 	public function script_link($script)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
+		
+		if(preg_match('/^http|^\/\//', $script))
+		{
+		  return '<script src="' . $script . '"></script>' . "\n";
+		}
+		else
+		{
+		  return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
+		}
 	}
 	
 	public function img($image_path, $attributes = array())
