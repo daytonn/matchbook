@@ -32,13 +32,15 @@ class MatchBook
 	private $body_id = '';
 	private $body_class = '';
 	private $snippets = array();
+	private $view_path = 'matchbook/';
 	
 	private $header;
 	
-	public function __construct($config = FALSE)
+	public function __construct($config = NULL)
 	{
 		$this->CI =& get_instance();
 		$this->CI->load->helper('url');
+		
 		if($config && is_array($config))
 		{
 			foreach($config as $setting => $value)
@@ -50,81 +52,41 @@ class MatchBook
 	
 	public function head()
 	{
-		return $this->build_header();
+		return $this->get_head();
 	}
 	
-	private function build_header()
+	private function get_head()
 	{
-		$base_url = base_url();
-		$header = <<<HEAD
-{$this->doctype_delaration()}
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-<head>
-	<script>document.documentElement.className = 'js';</script>
-	<meta charset="utf-8">
+		$head['doctype_delaration'] = $this->doctype_delaration();
+		$head['title'] = $this->title;
+		$head['description'] = $this->description;
+		$head['author'] = $this->author;
+		$head['meta_viewport_content'] = $this->meta_viewport_content;
+		$head['favicon'] = $this->site_root('favicon.ico');
+		$head['ios_icon'] = $this->site_root($this->icon_path . 'ios-icon.png');
+		$head['stylesheets'] = $this->stylesheets();
+		$head['head_scripts'] = $this->head_scripts();
+		$head['body_id'] = $this->body_id;
+		$head['body_class'] = $this->body_class;
 
-	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
-		 Remove this if you use the .htaccess -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-	<title>{$this->title}</title>
-  	<meta name="description" content="{$this->description}">
-  	<meta name="author" content="{$this->author}">
-
-  	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
-  	<meta name="viewport" content="{$this->meta_viewport_content}">
-
-  	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-  	<link rel="shortcut icon" href="{$this->site_root('favicon.ico')}">
-  	<link rel="apple-touch-icon" href="{$this->site_root($this->icon_path)}ios-icon.png">
-	
-	<script type="text/javascript" charset="utf-8">
-		var base_url = '{$base_url}';
-		var site_url = function(path) {
-			return base_url + path;
-		};
-	</script>
-
-	{$this->stylesheets()}
-	{$this->head_scripts()}
-</head>
-<body{$this->body_id}{$this->body_class}>
-
-HEAD;
-
-		return $header;
+		return $this->CI->load->view($this->view_path . 'head', $head, TRUE);;
 	}
 	
 	private function doctype_delaration()
 	{
-		switch($this->doctype)
-		{
-			case 'HTML5':
-				return '<!DOCTYPE html>';
-			break;
-			
-			case 'Strict':
-				return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
-			break;
-			
-			case 'Transitional':
-				return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
-			break;
-			
-			case 'Frameset':
-				return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">';
-			break;
-		}
+		$doctypes = array(
+			'HTML5' => '<!DOCTYPE html>',
+			'Strict' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
+			'Transitional' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">',
+			'Frameset' => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">'
+		);
+		
+		return $doctypes[$this->doctype];
 	}
 	
 	private function site_root($path)
 	{
-		return base_url() . "{$path}";
+		return base_url() . $path;
 	}
 	
 	public function stylesheets()
@@ -145,14 +107,7 @@ HEAD;
 	public function stylesheet_link($stylesheet)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		if(preg_match('/^http|^\/\//', $stylesheet))
-		{
-		  return '<link rel="stylesheet" href="' . $stylesheet . '" type="text/css" charset="utf-8" />' . "\n";
-		}
-		else
-		{
-		  return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
-		}
+		return '<link rel="stylesheet" href="' . base_url() . $this->stylesheet_path . $stylesheet . '.css' . $cache_buster . '" type="text/css" charset="utf-8" />' . "\n";
 	}
 	
 	private function build_cachebuster()
@@ -200,15 +155,7 @@ HEAD;
 	public function script_link($script)
 	{
 		$cache_buster = $this->use_cachebuster ? $this->build_cachebuster() : '';
-		
-		if(preg_match('/^http|^\/\//', $script))
-		{
-		  return '<script src="' . $script . '"></script>' . "\n";
-		}
-		else
-		{
-		  return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
-		}
+		return '<script src="' . site_root($this->script_path . $script) . '.js' . $cache_buster . '"></script>' . "\n";
 	}
 	
 	public function img($image_path, $attributes = array())
@@ -250,14 +197,8 @@ HEAD;
 	
 	private function script_snippet($source)
 	{
-		$snippet = <<<SNIP
-<script>
-/* <![CDATA[ */
-	{$source}
-/* ]]> */
-</script>	
-SNIP;
-		return $snippet;
+		$snippet['source'] = $source;
+		return $this->CI->load->view($this->view_path . 'snippet', $source, TRUE);
 	}
 	
 	public function add_snippet($source)
@@ -270,14 +211,11 @@ SNIP;
 		return (!empty($this->snippets)) ? $this->script_snippet(implode("\n", $this->snippets)) : '';
 	}
 	
-	public function footer()
+	public function end_html()
 	{
-		return <<<FOOTER
-{$this->body_scripts()}
-{$this->snippets()}
-</body>
-</html>	
-FOOTER;
+		$end['body_scripts'] = $this->body_scripts();
+		$end['snippets'] = $this->snippets();
+		return $this->CI->load->view($this->view_path . 'end', $end, TRUE);
 	}
 	
 	public function page_info($options)
@@ -303,4 +241,4 @@ FOOTER;
 	}
 }
 
-/* End of file matsticks.php */
+/* End of file matchbook.php */
