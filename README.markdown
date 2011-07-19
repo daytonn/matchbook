@@ -120,17 +120,7 @@ $config['description'] = 'Yet another asset management library for Codeigniter';
 
 ## Usage
 
-Either autoload or load the matchbook library (make sure to setup your config/matchbook.php)
 
-<pre name="code" class="php">
-// config/autoload.php
-$autoload['libraries'] = array('matchbook');
-
-//-- OR --//
-
-// controllers/controller.php
-$this->load->library('matchbook');
-</pre>
 
 You can now control head content via the matchbook API
 
